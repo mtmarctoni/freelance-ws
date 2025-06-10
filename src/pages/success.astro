@@ -1,0 +1,119 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Payment Successful - Marc Toni Mas">
+  <div class="min-h-screen bg-gray-50 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-md w-full space-y-8 text-center">
+      <div>
+        <div class="mx-auto flex items-center justify-center h-12 w-12 rounded-full bg-green-100">
+          <svg class="h-6 w-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+          </svg>
+        </div>
+        <h2 class="mt-6 text-3xl font-extrabold text-gray-900">
+          Payment Successful!
+        </h2>
+        <p class="mt-2 text-sm text-gray-600">
+          Thank you for your purchase. Your payment has been processed successfully.
+        </p>
+      </div>
+
+      <div id="order-details" class="bg-white p-6 rounded-lg shadow">
+        <div class="flex items-center justify-center">
+          <div class="animate-spin rounded-full h-6 w-6 border-b-2 border-primary-600"></div>
+          <span class="ml-2 text-gray-600">Loading order details...</span>
+        </div>
+      </div>
+
+      <div class="space-y-4">
+        <a href="/dashboard" class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-primary-600 hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500">
+          Go to Dashboard
+        </a>
+        <a href="/" class="w-full flex justify-center py-2 px-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500">
+          Back to Home
+        </a>
+      </div>
+    </div>
+  </div>
+</Layout>
+
+<script>
+  import { createClient } from '@supabase/supabase-js';
+  import { getProductByPriceId } from '../stripe-config';
+
+  const supabaseUrl = import.meta.env.PUBLIC_SUPABASE_URL;
+  const supabaseAnonKey = import.meta.env.PUBLIC_SUPABASE_ANON_KEY;
+  const supabase = createClient(supabaseUrl, supabaseAnonKey);
+
+  async function loadOrderDetails() {
+    try {
+      // Get session ID from URL
+      const urlParams = new URLSearchParams(window.location.search);
+      const sessionId = urlParams.get('session_id');
+
+      if (!sessionId) {
+        throw new Error('No session ID found');
+      }
+
+      // Check if user is authenticated
+      const { data: { user }, error: authError } = await supabase.auth.getUser();
+      
+      if (authError || !user) {
+        window.location.href = '/login';
+        return;
+      }
+
+      // Load the most recent order (should be the one just completed)
+      const { data: orders, error } = await supabase
+        .from('stripe_user_orders')
+        .select('*')
+        .eq('checkout_session_id', sessionId)
+        .order('order_date', { ascending: false })
+        .limit(1);
+
+      const orderDetailsDiv = document.getElementById('order-details')!;
+
+      if (error || !orders || orders.length === 0) {
+        orderDetailsDiv.innerHTML = `
+          <div class="text-center">
+            <h3 class="text-lg font-medium text-gray-900 mb-2">Order Confirmation</h3>
+            <p class="text-gray-600">Your payment was successful! Order details will be available in your dashboard shortly.</p>
+            <p class="text-sm text-gray-500 mt-2">Session ID: ${sessionId}</p>
+          </div>
+        `;
+        return;
+      }
+
+      const order = orders[0];
+      
+      orderDetailsDiv.innerHTML = `
+        <div class="text-center">
+          <h3 class="text-lg font-medium text-gray-900 mb-4">Order Confirmation</h3>
+          <div class="space-y-2">
+            <p class="text-sm text-gray-600">Order #${order.order_id}</p>
+            <p class="text-lg font-semibold text-gray-900">€${(order.amount_total / 100).toFixed(2)}</p>
+            <p class="text-sm text-gray-500">Paid on ${new Date(order.order_date).toLocaleDateString()}</p>
+            <div class="mt-4 p-3 bg-green-50 rounded-lg">
+              <p class="text-sm text-green-800">
+                <strong>Next Steps:</strong> You will receive an email with further instructions within 24 hours.
+              </p>
+            </div>
+          </div>
+        </div>
+      `;
+
+    } catch (error) {
+      console.error('Error loading order details:', error);
+      document.getElementById('order-details')!.innerHTML = `
+        <div class="text-center">
+          <h3 class="text-lg font-medium text-gray-900 mb-2">Payment Confirmed</h3>
+          <p class="text-gray-600">Your payment was successful! Check your dashboard for order details.</p>
+        </div>
+      `;
+    }
+  }
+
+  // Load order details on page load
+  loadOrderDetails();
+</script>

@@ -23,11 +23,26 @@
         </div>
       </div>
       
-      <!-- CTA Button -->
-      <div class="hidden md:block">
-        <a href="#contact" class="bg-primary-600 text-white px-4 py-2 rounded-lg hover:bg-primary-700 transition-colors font-medium">
-          Get Started
-        </a>
+      <!-- Auth/CTA Buttons -->
+      <div class="hidden md:flex items-center space-x-4">
+        <div id="auth-buttons">
+          <a href="/login" class="text-gray-600 hover:text-primary-600 px-3 py-2 rounded-md text-sm font-medium transition-colors">
+            Sign In
+          </a>
+          <a href="#contact" class="bg-primary-600 text-white px-4 py-2 rounded-lg hover:bg-primary-700 transition-colors font-medium">
+            Get Started
+          </a>
+        </div>
+        <div id="user-menu" class="hidden">
+          <div class="flex items-center space-x-4">
+            <a href="/dashboard" class="text-gray-600 hover:text-primary-600 px-3 py-2 rounded-md text-sm font-medium transition-colors">
+              Dashboard
+            </a>
+            <button id="logout-button" class="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700 transition-colors font-medium">
+              Sign Out
+            </button>
+          </div>
+        </div>
       </div>
       
       <!-- Mobile menu button -->
@@ -48,9 +63,25 @@
         <a href="#portfolio" class="mobile-nav-link">Portfolio</a>
         <a href="#about" class="mobile-nav-link">About</a>
         <a href="#contact" class="mobile-nav-link">Contact</a>
-        <a href="#contact" class="bg-primary-600 text-white block px-3 py-2 rounded-md text-base font-medium hover:bg-primary-700 transition-colors mt-4">
-          Get Started
-        </a>
+        
+        <!-- Mobile Auth Buttons -->
+        <div id="mobile-auth-buttons" class="pt-4 border-t border-gray-200">
+          <a href="/login" class="block text-gray-600 hover:text-primary-600 px-3 py-2 rounded-md text-base font-medium transition-colors">
+            Sign In
+          </a>
+          <a href="#contact" class="bg-primary-600 text-white block px-3 py-2 rounded-md text-base font-medium hover:bg-primary-700 transition-colors mt-2">
+            Get Started
+          </a>
+        </div>
+        
+        <div id="mobile-user-menu" class="hidden pt-4 border-t border-gray-200">
+          <a href="/dashboard" class="block text-gray-600 hover:text-primary-600 px-3 py-2 rounded-md text-base font-medium transition-colors">
+            Dashboard
+          </a>
+          <button id="mobile-logout-button" class="w-full text-left bg-red-600 text-white px-3 py-2 rounded-md text-base font-medium hover:bg-red-700 transition-colors mt-2">
+            Sign Out
+          </button>
+        </div>
       </div>
     </div>
   </nav>
@@ -67,6 +98,12 @@
 </style>
 
 <script>
+  import { createClient } from '@supabase/supabase-js';
+
+  const supabaseUrl = import.meta.env.PUBLIC_SUPABASE_URL;
+  const supabaseAnonKey = import.meta.env.PUBLIC_SUPABASE_ANON_KEY;
+  const supabase = createClient(supabaseUrl, supabaseAnonKey);
+
   // Mobile menu toggle
   const mobileMenuButton = document.getElementById('mobile-menu-button');
   const mobileMenu = document.getElementById('mobile-menu');
@@ -92,4 +129,54 @@
       header?.classList.remove('shadow-lg');
     }
   });
+
+  // Check authentication status and update header
+  async function updateAuthUI() {
+    try {
+      const { data: { user }, error } = await supabase.auth.getUser();
+      
+      const authButtons = document.getElementById('auth-buttons');
+      const userMenu = document.getElementById('user-menu');
+      const mobileAuthButtons = document.getElementById('mobile-auth-buttons');
+      const mobileUserMenu = document.getElementById('mobile-user-menu');
+      
+      if (error || !user) {
+        // User not authenticated
+        authButtons?.classList.remove('hidden');
+        userMenu?.classList.add('hidden');
+        mobileAuthButtons?.classList.remove('hidden');
+        mobileUserMenu?.classList.add('hidden');
+      } else {
+        // User authenticated
+        authButtons?.classList.add('hidden');
+        userMenu?.classList.remove('hidden');
+        mobileAuthButtons?.classList.add('hidden');
+        mobileUserMenu?.classList.remove('hidden');
+      }
+    } catch (error) {
+      console.error('Error checking auth status:', error);
+    }
+  }
+
+  // Handle logout
+  async function handleLogout() {
+    try {
+      await supabase.auth.signOut();
+      window.location.href = '/';
+    } catch (error) {
+      console.error('Error signing out:', error);
+    }
+  }
+
+  // Event listeners for logout buttons
+  document.getElementById('logout-button')?.addEventListener('click', handleLogout);
+  document.getElementById('mobile-logout-button')?.addEventListener('click', handleLogout);
+
+  // Listen for auth state changes
+  supabase.auth.onAuthStateChange((event, session) => {
+    updateAuthUI();
+  });
+
+  // Initial auth check
+  updateAuthUI();
 </script>

@@ -40,13 +40,13 @@
         </div>
         
         <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
-          <div class="text-3xl font-bold">Only $97</div>
+          <div class="text-3xl font-bold">Only €97</div>
           <div class="text-primary-100">• 60-minute video call • Written report • 7-day email support</div>
         </div>
         
-        <a href="#contact" class="inline-block bg-white text-primary-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors mt-6">
+        <button id="buy-consultation-hero" class="inline-block bg-white text-primary-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors mt-6">
           Book Your Consultation
-        </a>
+        </button>
       </div>
     </div>
     
@@ -121,7 +121,7 @@
             <h4 class="text-xl font-semibold text-gray-900 mb-2">Starter</h4>
             <p class="text-sm text-gray-500">Perfect for simple websites and landing pages</p>
           </div>
-          <div class="text-4xl font-bold text-primary-600 mb-6">$1,200</div>
+          <div class="text-4xl font-bold text-primary-600 mb-6">€1,200</div>
           
           <div class="text-left mb-8">
             <h5 class="font-semibold text-gray-900 mb-3">What's Included:</h5>
@@ -173,7 +173,7 @@
             <h4 class="text-xl font-semibold text-gray-900 mb-2">Professional</h4>
             <p class="text-sm text-gray-500">Full-stack applications with advanced features</p>
           </div>
-          <div class="text-4xl font-bold text-primary-600 mb-6">$2,800</div>
+          <div class="text-4xl font-bold text-primary-600 mb-6">€2,800</div>
           
           <div class="text-left mb-8">
             <h5 class="font-semibold text-gray-900 mb-3">What's Included:</h5>
@@ -289,4 +289,82 @@
       </p>
     </div>
   </div>
+
+  <!-- Loading Modal -->
+  <div id="loading-modal" class="fixed inset-0 bg-gray-600 bg-opacity-50 hidden items-center justify-center z-50">
+    <div class="bg-white p-6 rounded-lg shadow-xl">
+      <div class="flex items-center">
+        <div class="animate-spin rounded-full h-8 w-8 border-b-2 border-primary-600"></div>
+        <span class="ml-3 text-lg">Processing your request...</span>
+      </div>
+    </div>
+  </div>
 </section>
+
+<script>
+  import { createClient } from '@supabase/supabase-js';
+  import { stripeProducts } from '../stripe-config';
+
+  const supabaseUrl = import.meta.env.PUBLIC_SUPABASE_URL;
+  const supabaseAnonKey = import.meta.env.PUBLIC_SUPABASE_ANON_KEY;
+  const supabase = createClient(supabaseUrl, supabaseAnonKey);
+
+  // Handle consultation purchase from hero section
+  async function handleConsultationPurchase() {
+    // Check if user is authenticated
+    const { data: { user }, error } = await supabase.auth.getUser();
+    
+    if (error || !user) {
+      // Redirect to login if not authenticated
+      window.location.href = '/login';
+      return;
+    }
+
+    const loadingModal = document.getElementById('loading-modal')!;
+    loadingModal.classList.remove('hidden');
+    loadingModal.classList.add('flex');
+
+    try {
+      const consultationProduct = stripeProducts.find(p => p.name === 'Website Strategy Consultation');
+      if (!consultationProduct) {
+        throw new Error('Product not found');
+      }
+
+      const { data: { session } } = await supabase.auth.getSession();
+      if (!session) {
+        throw new Error('No session found');
+      }
+
+      const response = await fetch(`${supabaseUrl}/functions/v1/stripe-checkout`, {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${session.access_token}`,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          price_id: consultationProduct.priceId,
+          mode: consultationProduct.mode,
+          success_url: `${window.location.origin}/success?session_id={CHECKOUT_SESSION_ID}`,
+          cancel_url: `${window.location.origin}/#services`,
+        }),
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.error || 'Failed to create checkout session');
+      }
+
+      const { url } = await response.json();
+      window.location.href = url;
+    } catch (error: any) {
+      console.error('Error creating checkout session:', error);
+      alert('Error: ' + error.message);
+    } finally {
+      loadingModal.classList.add('hidden');
+      loadingModal.classList.remove('flex');
+    }
+  }
+
+  // Event listener for consultation purchase button
+  document.getElementById('buy-consultation-hero')?.addEventListener('click', handleConsultationPurchase);
+</script>
