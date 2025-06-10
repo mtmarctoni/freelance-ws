@@ -1,0 +1,75 @@
+---
+// Hero section component
+---
+
+<section id="home" class="pt-16 min-h-screen flex items-center bg-gradient-to-br from-primary-50 via-white to-secondary-50">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+      <!-- Content -->
+      <div class="text-center lg:text-left animate-slide-up">
+        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight mb-6">
+          Crafting Digital
+          <span class="text-primary-600">Excellence</span>
+          That Drives Results
+        </h1>
+        
+        <p class="text-xl text-gray-600 mb-8 leading-relaxed">
+          Full-stack developer specializing in modern web applications, 
+          performance optimization, and user-centered design. 
+          Transforming ideas into powerful digital solutions.
+        </p>
+        
+        <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+          <a href="#contact" class="bg-primary-600 text-white px-8 py-4 rounded-lg font-semibold hover:bg-primary-700 transform hover:scale-105 transition-all duration-200 shadow-lg hover:shadow-xl">
+            Start Your Project
+          </a>
+          <a href="#portfolio" class="border border-gray-300 text-gray-700 px-8 py-4 rounded-lg font-semibold hover:border-primary-600 hover:text-primary-600 transition-colors">
+            View My Work
+          </a>
+        </div>
+        
+        <!-- Stats -->
+        <div class="grid grid-cols-3 gap-6 mt-12 pt-8 border-t border-gray-200">
+          <div class="text-center lg:text-left">
+            <div class="text-2xl font-bold text-primary-600">50+</div>
+            <div class="text-sm text-gray-600">Projects Completed</div>
+          </div>
+          <div class="text-center lg:text-left">
+            <div class="text-2xl font-bold text-primary-600">5+</div>
+            <div class="text-sm text-gray-600">Years Experience</div>
+          </div>
+          <div class="text-center lg:text-left">
+            <div class="text-2xl font-bold text-primary-600">98%</div>
+            <div class="text-sm text-gray-600">Client Satisfaction</div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Hero Image -->
+      <div class="relative animate-float">
+        <div class="relative z-10">
+          <img 
+            src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=500&h=500&fit=crop&crop=face&auto=format&q=80"
+            alt="Marc Toni Mas - Professional Web Developer"
+            class="w-80 h-80 rounded-full mx-auto object-cover shadow-2xl border-8 border-white"
+            loading="eager"
+          />
+        </div>
+        
+        <!-- Floating elements -->
+        <div class="absolute -top-4 -right-4 w-20 h-20 bg-primary-100 rounded-full animate-pulse"></div>
+        <div class="absolute -bottom-4 -left-4 w-16 h-16 bg-secondary-100 rounded-full animate-pulse" style="animation-delay: 1s;"></div>
+        <div class="absolute top-1/2 -right-8 w-12 h-12 bg-accent-100 rounded-full animate-pulse" style="animation-delay: 2s;"></div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Scroll indicator -->
+  <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+    <a href="#services" class="text-gray-400 hover:text-primary-600 transition-colors">
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+      </svg>
+    </a>
+  </div>
+</section>

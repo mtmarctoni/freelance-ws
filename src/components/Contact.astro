@@ -1,0 +1,342 @@
+---
+// Contact section with form and availability
+---
+
+<section id="contact" class="py-20 bg-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <!-- Section Header -->
+    <div class="text-center mb-16">
+      <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
+        Let's Work Together
+      </h2>
+      <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+        Ready to bring your ideas to life? Let's discuss your project and explore 
+        how we can create something amazing together.
+      </p>
+    </div>
+    
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-16">
+      <!-- Contact Form -->
+      <div class="bg-gray-50 rounded-2xl p-8">
+        <h3 class="text-2xl font-bold text-gray-900 mb-6">Send a Message</h3>
+        
+        <form id="contact-form" class="space-y-6">
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+            <div>
+              <label for="firstName" class="block text-sm font-medium text-gray-700 mb-2">
+                First Name *
+              </label>
+              <input 
+                type="text" 
+                id="firstName" 
+                name="firstName" 
+                required 
+                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors"
+                placeholder="John"
+              />
+            </div>
+            <div>
+              <label for="lastName" class="block text-sm font-medium text-gray-700 mb-2">
+                Last Name *
+              </label>
+              <input 
+                type="text" 
+                id="lastName" 
+                name="lastName" 
+                required 
+                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors"
+                placeholder="Doe"
+              />
+            </div>
+          </div>
+          
+          <div>
+            <label for="email" class="block text-sm font-medium text-gray-700 mb-2">
+              Email Address *
+            </label>
+            <input 
+              type="email" 
+              id="email" 
+              name="email" 
+              required 
+              class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors"
+              placeholder="john@example.com"
+            />
+          </div>
+          
+          <div>
+            <label for="company" class="block text-sm font-medium text-gray-700 mb-2">
+              Company/Organization
+            </label>
+            <input 
+              type="text" 
+              id="company" 
+              name="company" 
+              class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors"
+              placeholder="Your Company"
+            />
+          </div>
+          
+          <div>
+            <label for="projectType" class="block text-sm font-medium text-gray-700 mb-2">
+              Project Type *
+            </label>
+            <select 
+              id="projectType" 
+              name="projectType" 
+              required 
+              class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors"
+            >
+              <option value="">Select project type</option>
+              <option value="website">Website Development</option>
+              <option value="webapp">Web Application</option>
+              <option value="ecommerce">E-commerce Platform</option>
+              <option value="mobile">Mobile Application</option>
+              <option value="consulting">Technical Consulting</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+          
+          <div>
+            <label for="budget" class="block text-sm font-medium text-gray-700 mb-2">
+              Project Budget
+            </label>
+            <select 
+              id="budget" 
+              name="budget" 
+              class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors"
+            >
+              <option value="">Select budget range</option>
+              <option value="under-5k">Under $5,000</option>
+              <option value="5k-10k">$5,000 - $10,000</option>
+              <option value="10k-25k">$10,000 - $25,000</option>
+              <option value="25k-50k">$25,000 - $50,000</option>
+              <option value="over-50k">Over $50,000</option>
+            </select>
+          </div>
+          
+          <div>
+            <label for="timeline" class="block text-sm font-medium text-gray-700 mb-2">
+              Project Timeline
+            </label>
+            <select 
+              id="timeline" 
+              name="timeline" 
+              class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors"
+            >
+              <option value="">Select timeline</option>
+              <option value="asap">ASAP</option>
+              <option value="1-2months">1-2 months</option>
+              <option value="2-3months">2-3 months</option>
+              <option value="3-6months">3-6 months</option>
+              <option value="flexible">Flexible</option>
+            </select>
+          </div>
+          
+          <div>
+            <label for="message" class="block text-sm font-medium text-gray-700 mb-2">
+              Project Details *
+            </label>
+            <textarea 
+              id="message" 
+              name="message" 
+              rows="5" 
+              required 
+              class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors resize-none"
+              placeholder="Tell me about your project, goals, and any specific requirements..."
+            ></textarea>
+          </div>
+          
+          <button 
+            type="submit" 
+            class="w-full bg-primary-600 text-white py-4 px-6 rounded-lg hover:bg-primary-700 transition-colors font-semibold text-lg shadow-lg hover:shadow-xl transform hover:scale-105 duration-200"
+          >
+            Send Message
+          </button>
+        </form>
+        
+        <div id="form-message" class="mt-4 hidden"></div>
+      </div>
+      
+      <!-- Contact Information -->
+      <div class="space-y-8">
+        <!-- Availability Status -->
+        <div class="bg-green-50 border border-green-200 rounded-lg p-6">
+          <div class="flex items-center mb-4">
+            <div class="w-3 h-3 bg-green-500 rounded-full mr-3 animate-pulse"></div>
+            <h3 class="text-lg font-semibold text-green-900">Available for New Projects</h3>
+          </div>
+          <p class="text-green-700 mb-4">
+            Currently accepting new client projects for Q1 2025. 
+            Let's discuss your requirements and timeline.
+          </p>
+          <div class="flex items-center text-sm text-green-600">
+            <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            </svg>
+            Response time: Within 24 hours
+          </div>
+        </div>
+        
+        <!-- Contact Methods -->
+        <div class="space-y-6">
+          <h3 class="text-xl font-bold text-gray-900">Get in Touch</h3>
+          
+          <div class="flex items-center">
+            <div class="w-12 h-12 bg-primary-100 rounded-lg flex items-center justify-center mr-4">
+              <svg class="w-6 h-6 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+              </svg>
+            </div>
+            <div>
+              <div class="font-medium text-gray-900">Email</div>
+              <a href="mailto:marc@marctoni.dev" class="text-primary-600 hover:text-primary-700 transition-colors">
+                marc@marctoni.dev
+              </a>
+            </div>
+          </div>
+          
+          <div class="flex items-center">
+            <div class="w-12 h-12 bg-secondary-100 rounded-lg flex items-center justify-center mr-4">
+              <svg class="w-6 h-6 text-secondary-600" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+              </svg>
+            </div>
+            <div>
+              <div class="font-medium text-gray-900">LinkedIn</div>
+              <a href="https://linkedin.com/in/marctonimas" class="text-secondary-600 hover:text-secondary-700 transition-colors">
+                /in/marctonimas
+              </a>
+            </div>
+          </div>
+          
+          <div class="flex items-center">
+            <div class="w-12 h-12 bg-gray-100 rounded-lg flex items-center justify-center mr-4">
+              <svg class="w-6 h-6 text-gray-600" fill="currentColor" viewBox="0 0 24 24">
+                <path fill-rule="evenodd" d="M12 0C5.374 0 0 5.373 0 12 0 17.302 3.438 21.8 8.207 23.387c.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z" clip-rule="evenodd"/>
+              </svg>
+            </div>
+            <div>
+              <div class="font-medium text-gray-900">GitHub</div>
+              <a href="https://github.com/marctonimas" class="text-gray-600 hover:text-gray-700 transition-colors">
+                /marctonimas
+              </a>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Calendar Booking -->
+        <div class="bg-gray-50 rounded-lg p-6">
+          <h4 class="font-semibold text-gray-900 mb-3">Schedule a Call</h4>
+          <p class="text-gray-600 mb-4">
+            Prefer to discuss your project over a call? Book a free 30-minute consultation.
+          </p>
+          <a 
+            href="https://calendly.com/marctonimas/consultation" 
+            class="inline-flex items-center bg-primary-600 text-white px-4 py-2 rounded-lg hover:bg-primary-700 transition-colors font-medium"
+          >
+            <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+            </svg>
+            Book a Call
+          </a>
+        </div>
+        
+        <!-- FAQ -->
+        <div class="space-y-4">
+          <h4 class="font-semibold text-gray-900">Frequently Asked Questions</h4>
+          
+          <div class="border border-gray-200 rounded-lg">
+            <button class="faq-toggle w-full text-left px-4 py-3 font-medium text-gray-900 hover:bg-gray-50 focus:bg-gray-50 transition-colors flex justify-between items-center">
+              What's your typical project timeline?
+              <svg class="w-5 h-5 text-gray-400 transition-transform faq-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+              </svg>
+            </button>
+            <div class="faq-content hidden px-4 pb-3 text-gray-600">
+              Most projects range from 2-8 weeks depending on complexity. Simple websites typically take 2-4 weeks, while custom applications can take 6-12 weeks. I'll provide a detailed timeline during our initial consultation.
+            </div>
+          </div>
+          
+          <div class="border border-gray-200 rounded-lg">
+            <button class="faq-toggle w-full text-left px-4 py-3 font-medium text-gray-900 hover:bg-gray-50 focus:bg-gray-50 transition-colors flex justify-between items-center">
+              Do you offer ongoing support?
+              <svg class="w-5 h-5 text-gray-400 transition-transform faq-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+              </svg>
+            </button>
+            <div class="faq-content hidden px-4 pb-3 text-gray-600">
+              Yes! I offer maintenance packages including updates, security monitoring, performance optimization, and feature enhancements. Support packages start at $500/month.
+            </div>
+          </div>
+          
+          <div class="border border-gray-200 rounded-lg">
+            <button class="faq-toggle w-full text-left px-4 py-3 font-medium text-gray-900 hover:bg-gray-50 focus:bg-gray-50 transition-colors flex justify-between items-center">
+              What's included in your pricing?
+              <svg class="w-5 h-5 text-gray-400 transition-transform faq-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+              </svg>
+            </button>
+            <div class="faq-content hidden px-4 pb-3 text-gray-600">
+              All packages include design, development, testing, deployment, and basic SEO setup. You'll also receive documentation, training, and 30 days of post-launch support at no extra cost.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  // Form submission
+  document.getElementById('contact-form')?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    
+    const formData = new FormData(e.target as HTMLFormElement);
+    const messageDiv = document.getElementById('form-message');
+    
+    // Show loading state
+    const submitBtn = e.target.querySelector('button[type="submit"]') as HTMLButtonElement;
+    const originalText = submitBtn.textContent;
+    submitBtn.textContent = 'Sending...';
+    submitBtn.disabled = true;
+    
+    try {
+      // Simulate form submission (replace with actual endpoint)
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      
+      // Show success message
+      if (messageDiv) {
+        messageDiv.className = 'mt-4 p-4 bg-green-50 border border-green-200 rounded-lg text-green-700';
+        messageDiv.textContent = 'Thank you for your message! I\'ll get back to you within 24 hours.';
+        messageDiv.classList.remove('hidden');
+      }
+      
+      // Reset form
+      (e.target as HTMLFormElement).reset();
+      
+    } catch (error) {
+      // Show error message
+      if (messageDiv) {
+        messageDiv.className = 'mt-4 p-4 bg-red-50 border border-red-200 rounded-lg text-red-700';
+        messageDiv.textContent = 'Sorry, there was an error sending your message. Please try again.';
+        messageDiv.classList.remove('hidden');
+      }
+    } finally {
+      // Reset button
+      submitBtn.textContent = originalText;
+      submitBtn.disabled = false;
+    }
+  });
+  
+  // FAQ toggle functionality
+  document.querySelectorAll('.faq-toggle').forEach(button => {
+    button.addEventListener('click', () => {
+      const content = button.nextElementSibling as HTMLElement;
+      const icon = button.querySelector('.faq-icon') as HTMLElement;
+      
+      content.classList.toggle('hidden');
+      icon.style.transform = content.classList.contains('hidden') ? 'rotate(0deg)' : 'rotate(180deg)';
+    });
+  });
+</script>

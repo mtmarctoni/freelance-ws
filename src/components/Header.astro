@@ -1,0 +1,95 @@
+---
+// Header component with navigation
+---
+
+<header class="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-md border-b border-gray-200">
+  <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex justify-between items-center h-16">
+      <!-- Logo -->
+      <div class="flex-shrink-0">
+        <a href="#home" class="text-xl font-bold text-gray-900 hover:text-primary-600 transition-colors">
+          Marc Toni Mas
+        </a>
+      </div>
+      
+      <!-- Navigation Links -->
+      <div class="hidden md:block">
+        <div class="ml-10 flex items-baseline space-x-4">
+          <a href="#home" class="nav-link">Home</a>
+          <a href="#services" class="nav-link">Services</a>
+          <a href="#portfolio" class="nav-link">Portfolio</a>
+          <a href="#about" class="nav-link">About</a>
+          <a href="#contact" class="nav-link">Contact</a>
+        </div>
+      </div>
+      
+      <!-- CTA Button -->
+      <div class="hidden md:block">
+        <a href="#contact" class="bg-primary-600 text-white px-4 py-2 rounded-lg hover:bg-primary-700 transition-colors font-medium">
+          Get Started
+        </a>
+      </div>
+      
+      <!-- Mobile menu button -->
+      <div class="md:hidden">
+        <button id="mobile-menu-button" class="text-gray-500 hover:text-gray-600 focus:outline-none focus:text-gray-600" aria-label="Toggle menu">
+          <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+    
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="md:hidden hidden">
+      <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-white border-t border-gray-200">
+        <a href="#home" class="mobile-nav-link">Home</a>
+        <a href="#services" class="mobile-nav-link">Services</a>
+        <a href="#portfolio" class="mobile-nav-link">Portfolio</a>
+        <a href="#about" class="mobile-nav-link">About</a>
+        <a href="#contact" class="mobile-nav-link">Contact</a>
+        <a href="#contact" class="bg-primary-600 text-white block px-3 py-2 rounded-md text-base font-medium hover:bg-primary-700 transition-colors mt-4">
+          Get Started
+        </a>
+      </div>
+    </div>
+  </nav>
+</header>
+
+<style>
+  .nav-link {
+    @apply text-gray-600 hover:text-primary-600 px-3 py-2 rounded-md text-sm font-medium transition-colors;
+  }
+  
+  .mobile-nav-link {
+    @apply text-gray-600 hover:text-primary-600 block px-3 py-2 rounded-md text-base font-medium transition-colors;
+  }
+</style>
+
+<script>
+  // Mobile menu toggle
+  const mobileMenuButton = document.getElementById('mobile-menu-button');
+  const mobileMenu = document.getElementById('mobile-menu');
+  
+  mobileMenuButton?.addEventListener('click', () => {
+    mobileMenu?.classList.toggle('hidden');
+  });
+  
+  // Close mobile menu when clicking on links
+  const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+  mobileNavLinks.forEach(link => {
+    link.addEventListener('click', () => {
+      mobileMenu?.classList.add('hidden');
+    });
+  });
+  
+  // Header scroll effect
+  window.addEventListener('scroll', () => {
+    const header = document.querySelector('header');
+    if (window.scrollY > 100) {
+      header?.classList.add('shadow-lg');
+    } else {
+      header?.classList.remove('shadow-lg');
+    }
+  });
+</script>
