@@ -7,8 +7,8 @@ export interface Props {
 }
 
 const {
-  title = "Marc Toni Mas - Freelance Web Developer & Digital Solutions Expert",
-  description = "Professional web developer specializing in modern, high-performance websites and applications. Expert in React, TypeScript, and full-stack development.",
+  title = "CodeCraft Studio - Modern Web Development & Digital Solutions by Marc Toni",
+  description = "Transform your business with cutting-edge web applications, automation solutions, and blockchain innovation. Expert development services from concept to deployment.",
   image = "/og-image.jpg",
   canonical
 } = Astro.props;
@@ -53,21 +53,32 @@ const canonicalURL = canonical || new URL(Astro.url.pathname, Astro.site);
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
-        "@type": "Person",
-        "name": "Marc Toni Mas",
-        "jobTitle": "Freelance Web Developer",
+        "@type": "Organization",
+        "name": "CodeCraft Studio",
+        "founder": {
+          "@type": "Person",
+          "name": "Marc Toni Mas"
+        },
         "url": "https://marctoni.dev",
+        "logo": "https://marctoni.dev/favicon.svg",
+        "description": "Modern web development, automation solutions, and blockchain innovation services",
         "sameAs": [
-          "https://github.com/marctonimas",
+          "https://github.com/mtmarctoni",
           "https://linkedin.com/in/marctonimas"
         ],
-        "knowsAbout": [
+        "serviceType": [
           "Web Development",
-          "React",
-          "TypeScript",
-          "Full Stack Development",
-          "UI/UX Design"
-        ]
+          "Business Automation",
+          "Blockchain Solutions",
+          "AI Integration",
+          "Technical Consulting"
+        ],
+        "areaServed": "Worldwide",
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "email": "marctonimas@outlook.es",
+          "contactType": "Customer Service"
+        }
       }
     </script>
   </head>
