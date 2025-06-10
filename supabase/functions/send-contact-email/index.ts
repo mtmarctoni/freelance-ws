@@ -77,7 +77,7 @@ Deno.serve(async (req) => {
 
     // Send email to you (notification)
     const notificationEmail = await resend.emails.send({
-      from: 'contact@marctoni.dev', // Use your verified domain
+      from: 'marc@marctonimas.com', // Use your verified domain
       to: ['marctonimas@outlook.es'],
       subject: `New Contact Form Submission from ${formData.firstName} ${formData.lastName}`,
       html: `
@@ -114,7 +114,7 @@ Deno.serve(async (req) => {
 
     // Send confirmation email to the user
     const confirmationEmail = await resend.emails.send({
-      from: 'contact@marctoni.dev', // Use your verified domain
+      from: 'marc@marctonimas.com', // Use your verified domain
       to: [formData.email],
       subject: 'Thank you for contacting Marc Toni Mas',
       html: `
