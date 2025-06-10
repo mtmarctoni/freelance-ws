@@ -2,27 +2,27 @@
 import Layout from '../layouts/Layout.astro';
 ---
 
-<Layout title="Payment Successful - Marc Toni Mas">
-  <div class="min-h-screen bg-gray-50 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+<Layout title="Payment Successful - CodeCraft Studio">
+  <div class="min-h-screen bg-gray-50 dark:bg-gray-900 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 transition-colors duration-300">
     <div class="max-w-md w-full space-y-8 text-center">
       <div>
-        <div class="mx-auto flex items-center justify-center h-12 w-12 rounded-full bg-green-100">
-          <svg class="h-6 w-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <div class="mx-auto flex items-center justify-center h-12 w-12 rounded-full bg-green-100 dark:bg-green-900/30">
+          <svg class="h-6 w-6 text-green-600 dark:text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
           </svg>
         </div>
-        <h2 class="mt-6 text-3xl font-extrabold text-gray-900">
+        <h2 class="mt-6 text-3xl font-extrabold text-gray-900 dark:text-white">
           Payment Successful!
         </h2>
-        <p class="mt-2 text-sm text-gray-600">
+        <p class="mt-2 text-sm text-gray-600 dark:text-gray-400">
           Thank you for your purchase. Your payment has been processed successfully.
         </p>
       </div>
 
-      <div id="order-details" class="bg-white p-6 rounded-lg shadow">
+      <div id="order-details" class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow border border-gray-200 dark:border-gray-700">
         <div class="flex items-center justify-center">
           <div class="animate-spin rounded-full h-6 w-6 border-b-2 border-primary-600"></div>
-          <span class="ml-2 text-gray-600">Loading order details...</span>
+          <span class="ml-2 text-gray-600 dark:text-gray-300">Loading order details...</span>
         </div>
       </div>
 
@@ -30,7 +30,7 @@ import Layout from '../layouts/Layout.astro';
         <a href="/dashboard" class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-primary-600 hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500">
           Go to Dashboard
         </a>
-        <a href="/" class="w-full flex justify-center py-2 px-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500">
+        <a href="/" class="w-full flex justify-center py-2 px-4 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm text-sm font-medium text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500">
           Back to Home
         </a>
       </div>
@@ -77,9 +77,9 @@ import Layout from '../layouts/Layout.astro';
       if (error || !orders || orders.length === 0) {
         orderDetailsDiv.innerHTML = `
           <div class="text-center">
-            <h3 class="text-lg font-medium text-gray-900 mb-2">Order Confirmation</h3>
-            <p class="text-gray-600">Your payment was successful! Order details will be available in your dashboard shortly.</p>
-            <p class="text-sm text-gray-500 mt-2">Session ID: ${sessionId}</p>
+            <h3 class="text-lg font-medium text-gray-900 dark:text-white mb-2">Order Confirmation</h3>
+            <p class="text-gray-600 dark:text-gray-300">Your payment was successful! Order details will be available in your dashboard shortly.</p>
+            <p class="text-sm text-gray-500 dark:text-gray-400 mt-2">Session ID: ${sessionId}</p>
           </div>
         `;
         return;
@@ -89,13 +89,13 @@ import Layout from '../layouts/Layout.astro';
       
       orderDetailsDiv.innerHTML = `
         <div class="text-center">
-          <h3 class="text-lg font-medium text-gray-900 mb-4">Order Confirmation</h3>
+          <h3 class="text-lg font-medium text-gray-900 dark:text-white mb-4">Order Confirmation</h3>
           <div class="space-y-2">
-            <p class="text-sm text-gray-600">Order #${order.order_id}</p>
-            <p class="text-lg font-semibold text-gray-900">€${(order.amount_total / 100).toFixed(2)}</p>
-            <p class="text-sm text-gray-500">Paid on ${new Date(order.order_date).toLocaleDateString()}</p>
-            <div class="mt-4 p-3 bg-green-50 rounded-lg">
-              <p class="text-sm text-green-800">
+            <p class="text-sm text-gray-600 dark:text-gray-400">Order #${order.order_id}</p>
+            <p class="text-lg font-semibold text-gray-900 dark:text-white">€${(order.amount_total / 100).toFixed(2)}</p>
+            <p class="text-sm text-gray-500 dark:text-gray-400">Paid on ${new Date(order.order_date).toLocaleDateString()}</p>
+            <div class="mt-4 p-3 bg-green-50 dark:bg-green-900/20 rounded-lg border border-green-200 dark:border-green-800">
+              <p class="text-sm text-green-800 dark:text-green-300">
                 <strong>Next Steps:</strong> You will receive an email with further instructions within 24 hours.
               </p>
             </div>
@@ -107,8 +107,8 @@ import Layout from '../layouts/Layout.astro';
       console.error('Error loading order details:', error);
       document.getElementById('order-details')!.innerHTML = `
         <div class="text-center">
-          <h3 class="text-lg font-medium text-gray-900 mb-2">Payment Confirmed</h3>
-          <p class="text-gray-600">Your payment was successful! Check your dashboard for order details.</p>
+          <h3 class="text-lg font-medium text-gray-900 dark:text-white mb-2">Payment Confirmed</h3>
+          <p class="text-gray-600 dark:text-gray-300">Your payment was successful! Check your dashboard for order details.</p>
         </div>
       `;
     }
@@ -117,3 +117,4 @@ import Layout from '../layouts/Layout.astro';
   // Load order details on page load
   loadOrderDetails();
 </script>
+</Layout>

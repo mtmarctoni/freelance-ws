@@ -2,14 +2,14 @@
 // Portfolio showcase section
 ---
 
-<section id="portfolio" class="py-20 bg-white">
+<section id="portfolio" class="py-20 bg-white dark:bg-gray-900 transition-colors duration-300">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <!-- Section Header -->
     <div class="text-center mb-16">
-      <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
+      <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-4">
         Featured Projects
       </h2>
-      <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+      <p class="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
         A showcase of real projects demonstrating expertise in modern web development, 
         blockchain technology, and full-stack solutions.
       </p>
@@ -27,7 +27,7 @@
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="portfolio-grid">
       <!-- Finance App -->
       <div class="portfolio-item" data-category="fullstack">
-        <div class="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden group">
+        <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden group border border-gray-100 dark:border-gray-700">
           <div class="relative overflow-hidden">
             <img 
               src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=600&h=400&fit=crop&auto=format&q=80"
@@ -48,8 +48,8 @@
             </div>
           </div>
           <div class="p-6">
-            <h3 class="text-xl font-semibold text-gray-900 mb-2">Finance Tracker App</h3>
-            <p class="text-gray-600 mb-4">Full-stack finance application for tracking daily expenses and income with authentication and PostgreSQL database.</p>
+            <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-2">Finance Tracker App</h3>
+            <p class="text-gray-600 dark:text-gray-300 mb-4">Full-stack finance application for tracking daily expenses and income with authentication and PostgreSQL database.</p>
             <div class="flex flex-wrap gap-2 mb-4">
               <span class="tech-tag">Next.js</span>
               <span class="tech-tag">TypeScript</span>
@@ -57,7 +57,7 @@
               <span class="tech-tag">NextAuth</span>
               <span class="tech-tag">Tailwind CSS</span>
             </div>
-            <div class="flex items-center justify-between text-sm text-gray-500">
+            <div class="flex items-center justify-between text-sm text-gray-500 dark:text-gray-400">
               <span>Full-Stack App</span>
               <span>Live on Vercel</span>
             </div>
@@ -67,7 +67,7 @@
       
       <!-- AI Order Processing System -->
       <div class="portfolio-item" data-category="automation">
-        <div class="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden group">
+        <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden group border border-gray-100 dark:border-gray-700">
           <div class="relative overflow-hidden">
             <img 
               src="https://images.unsplash.com/photo-1677442136019-21780ecad995?w=600&h=400&fit=crop&auto=format&q=80"
@@ -85,8 +85,8 @@
             </div>
           </div>
           <div class="p-6">
-            <h3 class="text-xl font-semibold text-gray-900 mb-2">AI Order Processing System</h3>
-            <p class="text-gray-600 mb-4">AI-powered multi-format document processing with automated workflow management for small businesses handling heterogeneous order formats.</p>
+            <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-2">AI Order Processing System</h3>
+            <p class="text-gray-600 dark:text-gray-300 mb-4">AI-powered multi-format document processing with automated workflow management for small businesses handling heterogeneous order formats.</p>
             <div class="flex flex-wrap gap-2 mb-4">
               <span class="tech-tag">Python</span>
               <span class="tech-tag">FastAPI</span>
@@ -94,7 +94,7 @@
               <span class="tech-tag">PostgreSQL</span>
               <span class="tech-tag">React</span>
             </div>
-            <div class="flex items-center justify-between text-sm text-gray-500">
+            <div class="flex items-center justify-between text-sm text-gray-500 dark:text-gray-400">
               <span>AI-Powered System</span>
               <span>In Development</span>
             </div>
@@ -104,7 +104,7 @@
       
       <!-- Web3 Lottery -->
       <div class="portfolio-item" data-category="web3">
-        <div class="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden group">
+        <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden group border border-gray-100 dark:border-gray-700">
           <div class="relative overflow-hidden">
             <img 
               src="https://images.unsplash.com/photo-1639762681485-074b7f938ba0?w=600&h=400&fit=crop&auto=format&q=80"
@@ -125,8 +125,8 @@
             </div>
           </div>
           <div class="p-6">
-            <h3 class="text-xl font-semibold text-gray-900 mb-2">Blockchain Lottery DApp</h3>
-            <p class="text-gray-600 mb-4">Decentralized lottery application built with Solidity smart contracts and Foundry for testing and deployment.</p>
+            <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-2">Blockchain Lottery DApp</h3>
+            <p class="text-gray-600 dark:text-gray-300 mb-4">Decentralized lottery application built with Solidity smart contracts and Foundry for testing and deployment.</p>
             <div class="flex flex-wrap gap-2 mb-4">
               <span class="tech-tag">Solidity</span>
               <span class="tech-tag">Foundry</span>
@@ -134,7 +134,7 @@
               <span class="tech-tag">TypeScript</span>
               <span class="tech-tag">Tailwind CSS</span>
             </div>
-            <div class="flex items-center justify-between text-sm text-gray-500">
+            <div class="flex items-center justify-between text-sm text-gray-500 dark:text-gray-400">
               <span>Web3 DApp</span>
               <span>Smart Contract</span>
             </div>
@@ -144,7 +144,7 @@
       
       <!-- Decentralized Voting Platform -->
       <div class="portfolio-item" data-category="web3">
-        <div class="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden group">
+        <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden group border border-gray-100 dark:border-gray-700">
           <div class="relative overflow-hidden">
             <img 
               src="https://images.unsplash.com/photo-1559526324-4b87b5e36e44?w=600&h=400&fit=crop&auto=format&q=80"
@@ -162,8 +162,8 @@
             </div>
           </div>
           <div class="p-6">
-            <h3 class="text-xl font-semibold text-gray-900 mb-2">Decentralized Voting Platform</h3>
-            <p class="text-gray-600 mb-4">Blockchain-based voting system ensuring transparency, immutability, and security for democratic processes and organizational governance.</p>
+            <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-2">Decentralized Voting Platform</h3>
+            <p class="text-gray-600 dark:text-gray-300 mb-4">Blockchain-based voting system ensuring transparency, immutability, and security for democratic processes and organizational governance.</p>
             <div class="flex flex-wrap gap-2 mb-4">
               <span class="tech-tag">Solidity</span>
               <span class="tech-tag">Hardhat</span>
@@ -171,7 +171,7 @@
               <span class="tech-tag">Web3.js</span>
               <span class="tech-tag">IPFS</span>
             </div>
-            <div class="flex items-center justify-between text-sm text-gray-500">
+            <div class="flex items-center justify-between text-sm text-gray-500 dark:text-gray-400">
               <span>Governance DApp</span>
               <span>Enterprise Solution</span>
             </div>
@@ -181,7 +181,7 @@
       
       <!-- Business Process Automation Hub -->
       <div class="portfolio-item" data-category="automation">
-        <div class="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden group">
+        <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden group border border-gray-100 dark:border-gray-700">
           <div class="relative overflow-hidden">
             <img 
               src="https://images.unsplash.com/photo-1518186285589-2f7649de83e0?w=600&h=400&fit=crop&auto=format&q=80"
@@ -199,8 +199,8 @@
             </div>
           </div>
           <div class="p-6">
-            <h3 class="text-xl font-semibold text-gray-900 mb-2">Business Process Automation Hub</h3>
-            <p class="text-gray-600 mb-4">Comprehensive workflow automation platform using n8n to streamline CRM, inventory management, and communication processes for SMEs.</p>
+            <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-2">Business Process Automation Hub</h3>
+            <p class="text-gray-600 dark:text-gray-300 mb-4">Comprehensive workflow automation platform using n8n to streamline CRM, inventory management, and communication processes for SMEs.</p>
             <div class="flex flex-wrap gap-2 mb-4">
               <span class="tech-tag">n8n</span>
               <span class="tech-tag">Node.js</span>
@@ -208,7 +208,7 @@
               <span class="tech-tag">Docker</span>
               <span class="tech-tag">REST APIs</span>
             </div>
-            <div class="flex items-center justify-between text-sm text-gray-500">
+            <div class="flex items-center justify-between text-sm text-gray-500 dark:text-gray-400">
               <span>Automation Platform</span>
               <span>Production Ready</span>
             </div>
@@ -218,7 +218,7 @@
       
       <!-- Web3 Fund Me -->
       <div class="portfolio-item" data-category="web3">
-        <div class="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden group">
+        <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden group border border-gray-100 dark:border-gray-700">
           <div class="relative overflow-hidden">
             <img 
               src="https://images.unsplash.com/photo-1559526324-4b87b5e36e44?w=600&h=400&fit=crop&auto=format&q=80"
@@ -236,8 +236,8 @@
             </div>
           </div>
           <div class="p-6">
-            <h3 class="text-xl font-semibold text-gray-900 mb-2">Fund Me Web3 App</h3>
-            <p class="text-gray-600 mb-4">Crowdfunding DApp using Foundry for smart contract testing and deployment on local blockchain network.</p>
+            <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-2">Fund Me Web3 App</h3>
+            <p class="text-gray-600 dark:text-gray-300 mb-4">Crowdfunding DApp using Foundry for smart contract testing and deployment on local blockchain network.</p>
             <div class="flex flex-wrap gap-2 mb-4">
               <span class="tech-tag">Solidity</span>
               <span class="tech-tag">Foundry</span>
@@ -245,7 +245,7 @@
               <span class="tech-tag">Ethers.js</span>
               <span class="tech-tag">Vite</span>
             </div>
-            <div class="flex items-center justify-between text-sm text-gray-500">
+            <div class="flex items-center justify-between text-sm text-gray-500 dark:text-gray-400">
               <span>Crowdfunding DApp</span>
               <span>Local Network</span>
             </div>
@@ -255,7 +255,7 @@
       
       <!-- Psychology Website -->
       <div class="portfolio-item" data-category="fullstack">
-        <div class="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden group">
+        <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden group border border-gray-100 dark:border-gray-700">
           <div class="relative overflow-hidden">
             <img 
               src="https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=600&h=400&fit=crop&auto=format&q=80"
@@ -276,8 +276,8 @@
             </div>
           </div>
           <div class="p-6">
-            <h3 class="text-xl font-semibold text-gray-900 mb-2">Psychology Practice Website</h3>
-            <p class="text-gray-600 mb-4">Professional website for a psychology practice with headless WordPress CMS and email integration.</p>
+            <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-2">Psychology Practice Website</h3>
+            <p class="text-gray-600 dark:text-gray-300 mb-4">Professional website for a psychology practice with headless WordPress CMS and email integration.</p>
             <div class="flex flex-wrap gap-2 mb-4">
               <span class="tech-tag">Next.js</span>
               <span class="tech-tag">TypeScript</span>
@@ -285,7 +285,7 @@
               <span class="tech-tag">Resend</span>
               <span class="tech-tag">Tailwind CSS</span>
             </div>
-            <div class="flex items-center justify-between text-sm text-gray-500">
+            <div class="flex items-center justify-between text-sm text-gray-500 dark:text-gray-400">
               <span>Professional Site</span>
               <span>Live Production</span>
             </div>
@@ -295,7 +295,7 @@
       
       <!-- Web3 Todo App -->
       <div class="portfolio-item" data-category="web3">
-        <div class="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden group">
+        <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden group border border-gray-100 dark:border-gray-700">
           <div class="relative overflow-hidden">
             <img 
               src="https://images.unsplash.com/photo-1611224923853-80b023f02d71?w=600&h=400&fit=crop&auto=format&q=80"
@@ -316,8 +316,8 @@
             </div>
           </div>
           <div class="p-6">
-            <h3 class="text-xl font-semibold text-gray-900 mb-2">Blockchain Todo App</h3>
-            <p class="text-gray-600 mb-4">Todo application built on blockchain using Solidity smart contracts and Hardhat for development and testing.</p>
+            <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-2">Blockchain Todo App</h3>
+            <p class="text-gray-600 dark:text-gray-300 mb-4">Todo application built on blockchain using Solidity smart contracts and Hardhat for development and testing.</p>
             <div class="flex flex-wrap gap-2 mb-4">
               <span class="tech-tag">Solidity</span>
               <span class="tech-tag">Hardhat</span>
@@ -325,7 +325,7 @@
               <span class="tech-tag">TypeScript</span>
               <span class="tech-tag">Tailwind CSS</span>
             </div>
-            <div class="flex items-center justify-between text-sm text-gray-500">
+            <div class="flex items-center justify-between text-sm text-gray-500 dark:text-gray-400">
               <span>Blockchain App</span>
               <span>Smart Contract</span>
             </div>
@@ -335,7 +335,7 @@
       
       <!-- Blog List App -->
       <div class="portfolio-item" data-category="fullstack">
-        <div class="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden group">
+        <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden group border border-gray-100 dark:border-gray-700">
           <div class="relative overflow-hidden">
             <img 
               src="https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=600&h=400&fit=crop&auto=format&q=80"
@@ -353,8 +353,8 @@
             </div>
           </div>
           <div class="p-6">
-            <h3 class="text-xl font-semibold text-gray-900 mb-2">Blog List Application</h3>
-            <p class="text-gray-600 mb-4">Full-stack blog application with user authentication, CRUD operations, and modern JavaScript practices.</p>
+            <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-2">Blog List Application</h3>
+            <p class="text-gray-600 dark:text-gray-300 mb-4">Full-stack blog application with user authentication, CRUD operations, and modern JavaScript practices.</p>
             <div class="flex flex-wrap gap-2 mb-4">
               <span class="tech-tag">JavaScript</span>
               <span class="tech-tag">React</span>
@@ -362,7 +362,7 @@
               <span class="tech-tag">Express</span>
               <span class="tech-tag">MongoDB</span>
             </div>
-            <div class="flex items-center justify-between text-sm text-gray-500">
+            <div class="flex items-center justify-between text-sm text-gray-500 dark:text-gray-400">
               <span>Full-Stack Blog</span>
               <span>CRUD Operations</span>
             </div>
@@ -375,15 +375,15 @@
 
 <style>
   .filter-btn {
-    @apply px-6 py-2 rounded-full border border-gray-300 text-gray-600 hover:border-primary-600 hover:text-primary-600 transition-colors font-medium;
+    @apply px-6 py-2 rounded-full border border-gray-300 dark:border-gray-600 text-gray-600 dark:text-gray-300 hover:border-primary-600 dark:hover:border-primary-400 hover:text-primary-600 dark:hover:text-primary-400 transition-colors font-medium;
   }
   
   .filter-btn.active {
-    @apply bg-primary-600 text-white border-primary-600;
+    @apply bg-primary-600 text-white border-primary-600 dark:bg-primary-600 dark:text-white dark:border-primary-600;
   }
   
   .tech-tag {
-    @apply bg-gray-100 text-gray-600 px-3 py-1 rounded-full text-xs font-medium;
+    @apply bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 px-3 py-1 rounded-full text-xs font-medium;
   }
   
   .portfolio-item {
