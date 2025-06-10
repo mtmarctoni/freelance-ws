@@ -2,7 +2,7 @@
 // Header component with navigation
 ---
 
-<header class="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-md border-b border-gray-200">
+<header class="fixed top-0 left-0 right-0 z-50 bg-white/90 dark:bg-gray-900/90 backdrop-blur-md border-b border-gray-200 dark:border-gray-700 transition-colors duration-300">
   <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex justify-between items-center h-16">
       <!-- Logo -->
@@ -12,8 +12,8 @@
             <span class="text-white font-bold text-sm">MTM</span>
           </div>
           <div class="flex flex-col">
-            <span class="text-lg font-bold text-gray-900 leading-none">CodeCraft Studio</span>
-            <span class="text-xs text-gray-500 leading-none">by Marc Toni Mas</span>
+            <span class="text-lg font-bold text-gray-900 dark:text-white leading-none">CodeCraft Studio</span>
+            <span class="text-xs text-gray-500 dark:text-gray-400 leading-none">by Marc Toni Mas</span>
           </div>
         </a>
       </div>
@@ -29,10 +29,24 @@
         </div>
       </div>
       
-      <!-- Auth/CTA Buttons -->
+      <!-- Auth/CTA Buttons + Dark Mode Toggle -->
       <div class="hidden md:flex items-center space-x-4">
+        <!-- Dark Mode Toggle -->
+        <button 
+          id="dark-mode-toggle"
+          class="p-2 rounded-lg text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+          aria-label="Toggle dark mode"
+        >
+          <svg id="sun-icon" class="w-5 h-5 hidden dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path>
+          </svg>
+          <svg id="moon-icon" class="w-5 h-5 block dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
+          </svg>
+        </button>
+
         <div id="auth-buttons">
-          <a href="/login" class="text-gray-600 hover:text-primary-600 px-3 py-2 rounded-md text-sm font-medium transition-colors">
+          <a href="/login" class="text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 px-3 py-2 rounded-md text-sm font-medium transition-colors">
             Sign In
           </a>
           <a href="#contact" class="bg-primary-600 text-white px-4 py-2 rounded-lg hover:bg-primary-700 transition-colors font-medium">
@@ -41,7 +55,7 @@
         </div>
         <div id="user-menu" class="hidden">
           <div class="flex items-center space-x-4">
-            <a href="/dashboard" class="text-gray-600 hover:text-primary-600 px-3 py-2 rounded-md text-sm font-medium transition-colors">
+            <a href="/dashboard" class="text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 px-3 py-2 rounded-md text-sm font-medium transition-colors">
               Dashboard
             </a>
             <button id="logout-button" class="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700 transition-colors font-medium">
@@ -52,8 +66,22 @@
       </div>
       
       <!-- Mobile menu button -->
-      <div class="md:hidden">
-        <button id="mobile-menu-button" class="text-gray-500 hover:text-gray-600 focus:outline-none focus:text-gray-600" aria-label="Toggle menu">
+      <div class="md:hidden flex items-center space-x-2">
+        <!-- Mobile Dark Mode Toggle -->
+        <button 
+          id="mobile-dark-mode-toggle"
+          class="p-2 rounded-lg text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+          aria-label="Toggle dark mode"
+        >
+          <svg class="w-5 h-5 hidden dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path>
+          </svg>
+          <svg class="w-5 h-5 block dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
+          </svg>
+        </button>
+
+        <button id="mobile-menu-button" class="text-gray-500 dark:text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 focus:outline-none focus:text-gray-600 dark:focus:text-gray-300" aria-label="Toggle menu">
           <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
           </svg>
@@ -63,7 +91,7 @@
     
     <!-- Mobile Menu -->
     <div id="mobile-menu" class="md:hidden hidden">
-      <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-white border-t border-gray-200">
+      <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-700">
         <a href="#home" class="mobile-nav-link">Home</a>
         <a href="#services" class="mobile-nav-link">Services</a>
         <a href="#portfolio" class="mobile-nav-link">Portfolio</a>
@@ -71,8 +99,8 @@
         <a href="#contact" class="mobile-nav-link">Contact</a>
         
         <!-- Mobile Auth Buttons -->
-        <div id="mobile-auth-buttons" class="pt-4 border-t border-gray-200">
-          <a href="/login" class="block text-gray-600 hover:text-primary-600 px-3 py-2 rounded-md text-base font-medium transition-colors">
+        <div id="mobile-auth-buttons" class="pt-4 border-t border-gray-200 dark:border-gray-700">
+          <a href="/login" class="block text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 px-3 py-2 rounded-md text-base font-medium transition-colors">
             Sign In
           </a>
           <a href="#contact" class="bg-primary-600 text-white block px-3 py-2 rounded-md text-base font-medium hover:bg-primary-700 transition-colors mt-2">
@@ -80,8 +108,8 @@
           </a>
         </div>
         
-        <div id="mobile-user-menu" class="hidden pt-4 border-t border-gray-200">
-          <a href="/dashboard" class="block text-gray-600 hover:text-primary-600 px-3 py-2 rounded-md text-base font-medium transition-colors">
+        <div id="mobile-user-menu" class="hidden pt-4 border-t border-gray-200 dark:border-gray-700">
+          <a href="/dashboard" class="block text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 px-3 py-2 rounded-md text-base font-medium transition-colors">
             Dashboard
           </a>
           <button id="mobile-logout-button" class="w-full text-left bg-red-600 text-white px-3 py-2 rounded-md text-base font-medium hover:bg-red-700 transition-colors mt-2">
@@ -95,11 +123,11 @@
 
 <style>
   .nav-link {
-    @apply text-gray-600 hover:text-primary-600 px-3 py-2 rounded-md text-sm font-medium transition-colors;
+    @apply text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 px-3 py-2 rounded-md text-sm font-medium transition-colors;
   }
   
   .mobile-nav-link {
-    @apply text-gray-600 hover:text-primary-600 block px-3 py-2 rounded-md text-base font-medium transition-colors;
+    @apply text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 block px-3 py-2 rounded-md text-base font-medium transition-colors;
   }
 </style>
 
@@ -135,6 +163,19 @@
       header?.classList.remove('shadow-lg');
     }
   });
+
+  // Dark mode toggle functionality
+  const darkModeToggle = document.getElementById('dark-mode-toggle');
+  const mobileDarkModeToggle = document.getElementById('mobile-dark-mode-toggle');
+  
+  function toggleDarkMode() {
+    if (typeof window.toggleDarkMode === 'function') {
+      window.toggleDarkMode();
+    }
+  }
+
+  darkModeToggle?.addEventListener('click', toggleDarkMode);
+  mobileDarkModeToggle?.addEventListener('click', toggleDarkMode);
 
   // Check authentication status and update header
   async function updateAuthUI() {

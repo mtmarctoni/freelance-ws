@@ -82,7 +82,7 @@ const canonicalURL = canonical || new URL(Astro.url.pathname, Astro.site);
       }
     </script>
   </head>
-  <body class="bg-white text-gray-900">
+  <body class="bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 transition-colors duration-300">
     <slot />
     
     <!-- Analytics and Performance -->
@@ -91,6 +91,46 @@ const canonicalURL = canonical || new URL(Astro.url.pathname, Astro.site);
       if ('serviceWorker' in navigator) {
         navigator.serviceWorker.register('/sw.js');
       }
+
+      // Dark mode toggle functionality
+      function initDarkMode() {
+        // Check for saved theme preference or default to system preference
+        const savedTheme = localStorage.getItem('theme');
+        const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        
+        if (savedTheme === 'dark' || (!savedTheme && systemPrefersDark)) {
+          document.documentElement.classList.add('dark');
+        } else {
+          document.documentElement.classList.remove('dark');
+        }
+      }
+
+      // Initialize dark mode on page load
+      initDarkMode();
+
+      // Listen for system theme changes
+      window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+        if (!localStorage.getItem('theme')) {
+          if (e.matches) {
+            document.documentElement.classList.add('dark');
+          } else {
+            document.documentElement.classList.remove('dark');
+          }
+        }
+      });
+
+      // Global function to toggle dark mode
+      window.toggleDarkMode = function() {
+        const isDark = document.documentElement.classList.contains('dark');
+        
+        if (isDark) {
+          document.documentElement.classList.remove('dark');
+          localStorage.setItem('theme', 'light');
+        } else {
+          document.documentElement.classList.add('dark');
+          localStorage.setItem('theme', 'dark');
+        }
+      };
     </script>
   </body>
 </html>
@@ -123,5 +163,12 @@ const canonicalURL = canonical || new URL(Astro.url.pathname, Astro.site);
       animation-iteration-count: 1 !important;
       transition-duration: 0.01ms !important;
     }
+  }
+
+  /* Dark mode transitions */
+  * {
+    transition-property: background-color, border-color, color, fill, stroke;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 300ms;
   }
 </style>
