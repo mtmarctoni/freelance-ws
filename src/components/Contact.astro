@@ -149,7 +149,8 @@
           
           <button 
             type="submit" 
-            class="w-full bg-primary-600 text-white py-4 px-6 rounded-lg hover:bg-primary-700 transition-colors font-semibold text-lg shadow-lg hover:shadow-xl transform hover:scale-105 duration-200"
+            id="submit-button"
+            class="w-full bg-primary-600 text-white py-4 px-6 rounded-lg hover:bg-primary-700 transition-colors font-semibold text-lg shadow-lg hover:shadow-xl transform hover:scale-105 duration-200 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
           >
             Send Message
           </button>
@@ -272,44 +273,100 @@
 </section>
 
 <script>
+  import { createClient } from '@supabase/supabase-js';
+
+  const supabaseUrl = import.meta.env.PUBLIC_SUPABASE_URL;
+  const supabaseAnonKey = import.meta.env.PUBLIC_SUPABASE_ANON_KEY;
+  const supabase = createClient(supabaseUrl, supabaseAnonKey);
+
   // Form submission
   document.getElementById('contact-form')?.addEventListener('submit', async (e) => {
     e.preventDefault();
     
     const formData = new FormData(e.target as HTMLFormElement);
     const messageDiv = document.getElementById('form-message');
+    const submitButton = document.getElementById('submit-button') as HTMLButtonElement;
     
     // Show loading state
-    const submitBtn = e.target.querySelector('button[type="submit"]') as HTMLButtonElement;
-    const originalText = submitBtn.textContent;
-    submitBtn.textContent = 'Sending...';
-    submitBtn.disabled = true;
+    const originalText = submitButton.textContent;
+    submitButton.textContent = 'Sending...';
+    submitButton.disabled = true;
+    
+    // Hide previous messages
+    messageDiv?.classList.add('hidden');
     
     try {
-      // Simulate form submission (replace with actual endpoint)
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      
+      // Prepare form data
+      const contactData = {
+        firstName: formData.get('firstName') as string,
+        lastName: formData.get('lastName') as string,
+        email: formData.get('email') as string,
+        company: formData.get('company') as string || undefined,
+        projectType: formData.get('projectType') as string,
+        budget: formData.get('budget') as string || undefined,
+        timeline: formData.get('timeline') as string || undefined,
+        message: formData.get('message') as string,
+      };
+
+      // Call the edge function
+      const response = await fetch(`${supabaseUrl}/functions/v1/send-contact-email`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${supabaseAnonKey}`,
+        },
+        body: JSON.stringify(contactData),
+      });
+
+      const result = await response.json();
+
+      if (!response.ok) {
+        throw new Error(result.error || 'Failed to send message');
+      }
+
       // Show success message
       if (messageDiv) {
         messageDiv.className = 'mt-4 p-4 bg-green-50 border border-green-200 rounded-lg text-green-700';
-        messageDiv.textContent = 'Thank you for your message! I\'ll get back to you within 24 hours.';
+        messageDiv.innerHTML = `
+          <div class="flex items-start">
+            <svg class="w-5 h-5 text-green-500 mr-2 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+            </svg>
+            <div>
+              <p class="font-medium">Message sent successfully!</p>
+              <p class="text-sm text-green-600 mt-1">Thank you for your message! I'll get back to you within 24 hours. You should also receive a confirmation email shortly.</p>
+            </div>
+          </div>
+        `;
         messageDiv.classList.remove('hidden');
       }
       
       // Reset form
       (e.target as HTMLFormElement).reset();
       
-    } catch (error) {
+    } catch (error: any) {
+      console.error('Error sending message:', error);
+      
       // Show error message
       if (messageDiv) {
         messageDiv.className = 'mt-4 p-4 bg-red-50 border border-red-200 rounded-lg text-red-700';
-        messageDiv.textContent = 'Sorry, there was an error sending your message. Please try again.';
+        messageDiv.innerHTML = `
+          <div class="flex items-start">
+            <svg class="w-5 h-5 text-red-500 mr-2 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd"></path>
+            </svg>
+            <div>
+              <p class="font-medium">Failed to send message</p>
+              <p class="text-sm text-red-600 mt-1">${error.message || 'Please try again or contact me directly at marctonimas@outlook.es'}</p>
+            </div>
+          </div>
+        `;
         messageDiv.classList.remove('hidden');
       }
     } finally {
       // Reset button
-      submitBtn.textContent = originalText;
-      submitBtn.disabled = false;
+      submitButton.textContent = originalText;
+      submitButton.disabled = false;
     }
   });
   
