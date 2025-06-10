@@ -90,21 +90,39 @@
         </div>
       </div>
       
-      <!-- Hero Image -->
+      <!-- Visual Elements - No Personal Photo -->
       <div class="relative animate-float">
-        <div class="relative z-10">
-          <img 
-            src="https://marctonimas.com/profile-picture.jpeg"
-            alt="Marc Toni - Founder of CodeCraft Studio"
-            class="w-80 h-80 rounded-full mx-auto object-cover shadow-2xl border-8 border-primary-600/80"
-            loading="eager"
-          />
-          
-          <!-- Floating Badge -->
-          <div class="absolute -bottom-4 left-1/2 transform -translate-x-1/2 bg-white rounded-full px-6 py-3 shadow-lg border border-gray-200">
-            <div class="flex items-center space-x-2">
-              <div class="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
-              <span class="text-sm font-medium text-gray-900">Available for Projects</span>
+        <!-- Main Visual Element -->
+        <div class="relative z-10 bg-gradient-to-br from-primary-600 to-secondary-600 rounded-3xl p-8 shadow-2xl">
+          <div class="text-white text-center">
+            <div class="w-20 h-20 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-6">
+              <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path>
+              </svg>
+            </div>
+            <h3 class="text-2xl font-bold mb-4">Ready to Build?</h3>
+            <p class="text-primary-100 mb-6">Let's transform your ideas into powerful digital solutions</p>
+            
+            <!-- Tech Stack Icons -->
+            <div class="grid grid-cols-3 gap-4 mb-6">
+              <div class="bg-white/10 rounded-lg p-3 text-center">
+                <div class="text-2xl mb-1">⚛️</div>
+                <div class="text-xs">React</div>
+              </div>
+              <div class="bg-white/10 rounded-lg p-3 text-center">
+                <div class="text-2xl mb-1">🔗</div>
+                <div class="text-xs">Blockchain</div>
+              </div>
+              <div class="bg-white/10 rounded-lg p-3 text-center">
+                <div class="text-2xl mb-1">🤖</div>
+                <div class="text-xs">AI/Auto</div>
+              </div>
+            </div>
+            
+            <!-- Availability Badge -->
+            <div class="bg-green-500 text-white rounded-full px-4 py-2 text-sm font-medium inline-flex items-center">
+              <span class="w-2 h-2 bg-white rounded-full mr-2 animate-pulse"></span>
+              Available for New Projects
             </div>
           </div>
         </div>
