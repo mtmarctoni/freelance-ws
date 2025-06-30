@@ -115,21 +115,21 @@ Deno.serve(async (req) => {
           // Delete the invalid customer record from our database
           const { error: deleteError } = await supabase
             .from('stripe_customers')
-            .delete()
+            .update({ deleted_at: new Date().toISOString() })
             .eq('customer_id', customer.customer_id);
 
           if (deleteError) {
-            console.error('Failed to delete invalid customer record:', deleteError);
+            console.error('Failed to mark invalid customer record as deleted:', deleteError);
           }
 
           // Also clean up any associated subscription records
           const { error: deleteSubError } = await supabase
             .from('stripe_subscriptions')
-            .delete()
+            .update({ deleted_at: new Date().toISOString() })
             .eq('customer_id', customer.customer_id);
 
           if (deleteSubError) {
-            console.error('Failed to delete invalid subscription records:', deleteSubError);
+            console.error('Failed to mark invalid subscription records as deleted:', deleteSubError);
           }
 
           // Create a new customer
@@ -139,47 +139,48 @@ Deno.serve(async (req) => {
           return corsResponse({ error: 'Failed to validate customer information' }, 500);
         }
       }
+    }
 
-      if (mode === 'subscription') {
-        // Verify subscription exists for existing customer
-        const { data: subscription, error: getSubscriptionError } = await supabase
-          .from('stripe_subscriptions')
-          .select('status, price_id')
-          .eq('customer_id', customerId)
-          .is('deleted_at', null)
-          .maybeSingle();
+    // Handle subscription logic only after we have a valid customer ID
+    if (mode === 'subscription') {
+      // Verify subscription exists for existing customer
+      const { data: subscription, error: getSubscriptionError } = await supabase
+        .from('stripe_subscriptions')
+        .select('status, price_id')
+        .eq('customer_id', customerId)
+        .is('deleted_at', null)
+        .maybeSingle();
 
-        if (getSubscriptionError) {
-          console.error('Failed to fetch subscription information from the database', getSubscriptionError);
-          return corsResponse({ error: 'Failed to fetch subscription information' }, 500);
+      if (getSubscriptionError) {
+        console.error('Failed to fetch subscription information from the database', getSubscriptionError);
+        return corsResponse({ error: 'Failed to fetch subscription information' }, 500);
+      }
+
+      if (!subscription) {
+        // Create subscription record for existing customer if missing
+        const { error: createSubscriptionError } = await supabase.from('stripe_subscriptions').insert({
+          customer_id: customerId,
+          status: 'not_started',
+          price_id: price_id,
+        });
+
+        if (createSubscriptionError) {
+          console.error('Failed to create subscription record for existing customer', createSubscriptionError);
+          return corsResponse({ error: 'Failed to create subscription record for existing customer' }, 500);
         }
-
-        if (!subscription) {
-          // Create subscription record for existing customer if missing
-          const { error: createSubscriptionError } = await supabase.from('stripe_subscriptions').insert({
-            customer_id: customerId,
-            status: 'not_started',
+      } else if (subscription.price_id !== price_id) {
+        // Update the price_id if it's different
+        const { error: updateSubscriptionError } = await supabase
+          .from('stripe_subscriptions')
+          .update({ 
             price_id: price_id,
-          });
+            updated_at: new Date().toISOString()
+          })
+          .eq('customer_id', customerId);
 
-          if (createSubscriptionError) {
-            console.error('Failed to create subscription record for existing customer', createSubscriptionError);
-            return corsResponse({ error: 'Failed to create subscription record for existing customer' }, 500);
-          }
-        } else if (subscription.price_id !== price_id) {
-          // Update the price_id if it's different
-          const { error: updateSubscriptionError } = await supabase
-            .from('stripe_subscriptions')
-            .update({ 
-              price_id: price_id,
-              updated_at: new Date().toISOString()
-            })
-            .eq('customer_id', customerId);
-
-          if (updateSubscriptionError) {
-            console.error('Failed to update subscription price_id', updateSubscriptionError);
-            // Continue anyway, as this is not critical for checkout
-          }
+        if (updateSubscriptionError) {
+          console.error('Failed to update subscription price_id', updateSubscriptionError);
+          // Continue anyway, as this is not critical for checkout
         }
       }
     }
