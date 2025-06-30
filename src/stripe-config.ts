@@ -10,8 +10,8 @@ export interface StripeProduct {
 
 export const stripeProducts: StripeProduct[] = [
   {
-    id: 'prod_STRAwZoCeFBz5P',
-    priceId: 'price_1RYUINRgD4FRsmURTKY4JGrb',
+    id: 'prod_SargpPlaaBR2FQ',
+    priceId: 'price_1RffxHDBiNElaj96GyQsOEe2',
     name: 'Website Strategy Consultation',
     description: 'A comprehensive 60-minute consultation designed for entrepreneurs, startups, and small businesses who want expert guidance before investing in their web project. This consultation helps clients make informed decisions about their website or web application development.',
     mode: 'payment',
