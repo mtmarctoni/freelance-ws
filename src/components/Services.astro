@@ -327,7 +327,6 @@
 
     try {
       const consultationProduct = stripeProducts.find(p => p.name === 'Website Strategy Consultation');
-      console.log(consultatnProduct);
       if (!consultationProduct) {
         throw new Error('Product not found');
       }
